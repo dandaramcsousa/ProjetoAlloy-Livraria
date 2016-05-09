@@ -6,7 +6,12 @@ sig Livraria{
 	revistas: set Revista,
 	clientes: set Cliente
 }
-sig Funcionario{}
+abstract sig Funcionario{
+	caixas: set Caixa,
+	atendentes: set Atendente
+}
+sig Caixa extends Funcionario{}
+sig Atendente extends Funcionario{}
 sig Cliente{}
 sig Pagamento{}
 
@@ -16,9 +21,17 @@ sig LivroNaoDidatico extends Livro{}
 sig Ebook extends Livro{}
 sig Revista{}
 
+fact{
+	#Livraria = 1
+	#funcionarios = 5
+	#atendentes = 3
+	#caixas = 2
+
+}
+
 
 pred promocoes{}
 
 pred show[]{}
 
-run show
+run show for 5
